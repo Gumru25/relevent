@@ -2,6 +2,11 @@
 	box-sizing: inherit;
 }
 
+:root {
+	--bgColor: #212121;
+	--color: white;
+}
+
 html {
 	box-sizing: border-box;
 	font-family: sans-serif;
@@ -9,6 +14,8 @@ html {
 
 body {
 	margin: 0;
+	background-color: var(--bgColor);
+	color: var(--color);
 }
 
 img {
@@ -23,4 +30,10 @@ img {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0 15px;
+}
+
+.page {
+	display: grid;
+	grid-auto-rows: auto 1fr auto;
+	min-height: 100vh;
 }
