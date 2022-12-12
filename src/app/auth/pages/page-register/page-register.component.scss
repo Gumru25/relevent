@@ -1,0 +1,11 @@
+.form-register {
+	display: grid;
+	grid-auto-rows: 1fr;
+	grid-template-columns: minmax(auto, 300px);
+	justify-content: start;
+	gap: 20px;
+}
+
+.form-register__btn-submit {
+	margin-top: 20px;
+}

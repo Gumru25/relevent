@@ -3,8 +3,12 @@
 }
 
 :root {
-	--bgColor: #212121;
-	--color: white;
+	--bgColor: white;
+	--color: #212121;
+}
+
+html, body {
+	height: 100%;
 }
 
 html {
@@ -16,6 +20,7 @@ body {
 	margin: 0;
 	background-color: var(--bgColor);
 	color: var(--color);
+	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 img {

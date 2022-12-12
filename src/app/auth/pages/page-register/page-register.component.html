@@ -8,6 +8,63 @@
 	
 				<div class="intro">
 					<h1 class="intro__title">Register</h1>
+
+					<form [formGroup]="form" class="form-register">
+
+						<mat-form-field>
+							<mat-label>Email</mat-label>
+							<input type="email" matInput [formControl]="form.controls.email">
+							<mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+								Напишите валидный email адрес
+							</mat-error>
+							<mat-error *ngIf="form.controls.email.hasError('required')">
+								Email обязателен для заполнения
+							</mat-error>
+						</mat-form-field>
+						
+
+						<mat-form-field>
+							<mat-label>Full name</mat-label>
+							<input type="text" matInput [formControl]="form.controls.fullName">
+							<mat-error *ngIf="form.controls.fullName.hasError('required')">
+								Full name обязателен для заполнения
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-label>Phone</mat-label>
+							<input type="tel" matInput [formControl]="form.controls.phone" placeholder="+994509666225">
+							<mat-error *ngIf="form.controls.phone.hasError('required')">
+								Phone обязателен для заполнения
+							</mat-error>
+							<mat-error *ngIf="form.controls.phone.hasError('pattern')">
+								Phone не соответствует требованиям
+							</mat-error>
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-label>Password</mat-label>
+							<input type="password" matInput [formControl]="form.controls.password">
+							<mat-error *ngIf="form.controls.password.hasError('required')">
+								Password обязателен для заполнения
+							</mat-error>
+							<mat-error *ngIf="form.controls.password.hasError('minlength')">
+								Password > 4 char
+							</mat-error>
+						</mat-form-field>
+
+						<!-- <mat-form-field>
+							<mat-label>Email</mat-label>
+							<input type="email" matInput [formControl]="form.controls.email">
+							<mat-error *ngIf="form.controls.email.hasError('required')">
+								Email обязателен для заполнения
+							</mat-error>
+						</mat-form-field> -->
+
+						<button class="form-register__btn-submit" type="submit" mat-raised-button color="primary">Register</button>
+
+					</form>
+
 				</div>
 	
 			</div>
