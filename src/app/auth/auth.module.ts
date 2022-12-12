@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from './auth.service';
+import { UserService } from '../user/user.service';
 
 
 
@@ -27,6 +29,10 @@ import { MatButtonModule } from '@angular/material/button';
 		MatFormFieldModule,
 		MatInputModule,
 		MatButtonModule
-  ]
+  ],
+	providers: [
+		AuthService,
+		UserService
+	]
 })
 export class AuthModule { }

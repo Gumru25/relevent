@@ -1,6 +1,8 @@
 import { UserInfo } from "./user.interfaces";
 import { User } from "./user.model";
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class UserService {
 	private _users: User[] = [];
 	public get users(): User[] {

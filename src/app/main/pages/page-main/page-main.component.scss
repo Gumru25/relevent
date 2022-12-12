@@ -2,11 +2,27 @@
 	display: flow-root;
 }
 
+.section_intro {
+	background: url(/assets/img/page-main-intro.jpg) no-repeat center / cover;
+	// background-image: url('/assets/img/lamp.png');	
+	color: white;
+	display: flex;
+}
+
 .intro {
-	background-image: url(src/assets/img/photo1.jpg);
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 .intro__title {
 	font-family: Arial;
-	font-size: 26px;
+	font-size: 2em;
+}
+
+.main {
+	display: grid;
+	grid-auto-rows: 1fr;
 }
