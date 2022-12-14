@@ -31,8 +31,10 @@ export class PageSignInComponent {
 
 		this.authService.authorize(formValues);
 
-		if (this.authService.isAuthorized === false) {
-			window.location.reload();
-		}
+		this.authService.isAuthorized$.subscribe(isAuth => {
+			if (isAuth === false) {
+				window.location.reload();
+			}
+		});
 	}
 }

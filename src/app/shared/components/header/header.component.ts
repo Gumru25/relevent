@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent {
 	
-	public isAuthorized: boolean = this.authService.isAuthorized;
+	public isAuthorized$: Observable<boolean> = this.authService.isAuthorized$;
 
 	constructor(
 		private authService: AuthService
