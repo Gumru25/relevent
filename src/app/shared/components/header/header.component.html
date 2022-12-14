@@ -2,10 +2,17 @@
 	<div class="container">
 		<div class="header__wrapper">
 
-			<a routerLink="/" class="header__logo">Logo</a>
+			<a routerLink="/" class="header__logo">
+				<img src="/assets/img/logo.png" alt="" class="header__logo-img">
+			</a>
 			<nav class="header__nav">
-				<a routerLink="/auth/sign-in" class="header__nav-link">Login</a>
-				<a routerLink="/auth/register" class="header__nav-link">Register</a>
+				<ng-container *ngIf="isAuthorized === false">
+					<a routerLink="/auth/sign-in" class="header__nav-link">Login</a>
+					<a routerLink="/auth/register" class="header__nav-link">Register</a>
+				</ng-container>
+				<ng-container *ngIf="isAuthorized === true">
+					<a routerLink="/profile" class="header__nav-link">Profile</a>
+				</ng-container>
 			</nav>
 
 		</div>

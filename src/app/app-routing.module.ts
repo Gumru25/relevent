@@ -12,12 +12,17 @@ const routes: Routes = [
 		loadChildren: () => 
 			import('./auth/auth.module').then(m => m.AuthModule)
 	},
-	{ path: '**', redirectTo: 'error', pathMatch: 'full' },
+	{
+		path: 'profile',
+		loadChildren: () => 
+			import('./profile/profile.module').then(m => m.ProfileModule)
+	},
 	{
 		path: 'error',
 		loadChildren: () => 
 			import('./error/error.module').then(m => m.ErrorModule)
 	},
+	{ path: '**', redirectTo: 'error', pathMatch: 'full' },
 ];
 
 @NgModule({

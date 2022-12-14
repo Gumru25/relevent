@@ -13,6 +13,8 @@ export class PageRegisterComponent implements OnInit {
 		private authService: AuthService
 	) {}
 
+	public disabledForm: boolean = false;
+
 	public form = new FormGroup({
 		email: new FormControl(null, [Validators.required, Validators.email]),
 		fullName: new FormControl(null, [Validators.required]),
@@ -22,6 +24,7 @@ export class PageRegisterComponent implements OnInit {
 
 	public onSubmit(): void {
 		// после отправки формы, сразу заблокировать кнопку submit
+		this.disabledForm = true;
 
 		const formValues: RegisterFormValues = {
 			email: this.form.value.email! as string,

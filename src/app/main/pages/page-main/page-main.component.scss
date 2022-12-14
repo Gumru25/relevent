@@ -3,10 +3,13 @@
 }
 
 .section_intro {
-	background: url(/assets/img/page-main-intro.jpg) no-repeat center / cover;
-	// background-image: url('/assets/img/lamp.png');	
+	background: url(/assets/img/main2.gif) no-repeat center / cover;	
 	color: white;
 	display: flex;
+}
+
+.header {
+	background-color: #fff;
 }
 
 .intro {
@@ -19,7 +22,7 @@
 
 .intro__title {
 	font-family: Arial;
-	font-size: 2em;
+	font-size: 2.5em;
 }
 
 .main {

@@ -1,0 +1,24 @@
+<div class="page">
+	<app-header class="header"></app-header>
+
+	<main class="main">
+		
+		<section class="section">
+			<div class="container">
+	
+				<ng-container *ngIf="user !== null">
+					<div class="profile">
+						<button mat-raised-button color="warn" (click)="signOut()">Sign out</button>
+						<div class="profile__id">ID: {{ user.id }}</div>
+						<div class="profile__full-name">Full Name: {{ user.fullName }}</div>
+						<div class="profile__email">Email: {{ user.email }}</div>
+						<div class="profile__phone">Phone: {{ user.phone }}</div>
+					</div>
+				</ng-container>
+	
+			</div>
+		</section>
+	
+	</main>
+	<app-footer></app-footer>
+</div>

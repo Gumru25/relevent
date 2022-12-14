@@ -6,8 +6,8 @@
 		<section class="section section_register">
 			<div class="container">
 	
-				<div class="intro">
-					<h1 class="intro__title">Register</h1>
+				<div>
+					<h1>Register</h1>
 
 					<form [formGroup]="form" class="form-register" (ngSubmit)="onSubmit()">
 
@@ -53,20 +53,12 @@
 							</mat-error>
 						</mat-form-field>
 
-						<!-- <mat-form-field>
-							<mat-label>Email</mat-label>
-							<input type="email" matInput [formControl]="form.controls.email">
-							<mat-error *ngIf="form.controls.email.hasError('required')">
-								Email обязателен для заполнения
-							</mat-error>
-						</mat-form-field> -->
-
 						<button
 							class="form-register__btn-submit"
 							type="submit"
 							mat-raised-button
 							color="primary"
-							[disabled]="!form.valid"
+							[disabled]="!form.valid || disabledForm"
 						>Register</button>
 
 					</form>

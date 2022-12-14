@@ -4,3 +4,8 @@ export interface RegisterFormValues {
 	phone: string;
 	password: string;
 }
+
+export interface AuthFormValues {
+	email: string;
+	password: string;
+}

@@ -5,10 +5,17 @@
 .header__wrapper {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	gap: 30px;
 }
 
 .header__nav {
 	display: flex;
 	gap: 10px;
+}
+
+.header__logo-img {
+	--size: 3em;
+	width: var(--size);
+	height: var(--size);
 }

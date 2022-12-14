@@ -6,8 +6,41 @@
 		<section class="section section_sign-in">
 			<div class="container">
 	
-				<div class="intro">
-					<h1 class="intro__title">Тут надо сделать форму для атворизации</h1>
+				<div class="auth">
+					<h1>Sign in</h1>
+					<form [formGroup]="form" class="form-auth" (ngSubmit)="onSubmit()">
+
+						<mat-form-field>
+							<mat-label>Email</mat-label>
+							<input type="email" matInput [formControl]="form.controls.email">
+							<mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+								Напишите валидный email адрес
+							</mat-error>
+							<mat-error *ngIf="form.controls.email.hasError('required')">
+								Email обязателен для заполнения
+							</mat-error>
+						</mat-form-field>
+	
+						<mat-form-field>
+							<mat-label>Password</mat-label>
+							<input type="password" matInput [formControl]="form.controls.password">
+							<mat-error *ngIf="form.controls.password.hasError('required')">
+								Password обязателен для заполнения
+							</mat-error>
+							<mat-error *ngIf="form.controls.password.hasError('minlength')">
+								Password > 4 char
+							</mat-error>
+						</mat-form-field>
+	
+						<button
+							class="form-auth__btn-submit"
+							type="submit"
+							mat-raised-button
+							color="primary"
+							[disabled]="!form.valid || disabledForm"
+						>Register</button>
+	
+					</form>
 				</div>
 	
 			</div>
