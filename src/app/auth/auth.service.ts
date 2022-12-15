@@ -3,29 +3,49 @@ import { UserService } from "../user/user.service";
 import { AuthFormValues, RegisterFormValues } from "./auth.interface";
 import { Injectable, ApplicationRef } from '@angular/core';
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable, ReplaySubject, Subject, takeWhile, tap } from "rxjs";
+import { BehaviorSubject, filter, map, Observable, of, ReplaySubject, Subject, switchMap, takeWhile, tap } from "rxjs";
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
-	private _user$: ReplaySubject<User | null> = new ReplaySubject(1);
+	private _user$: BehaviorSubject<User | null> = new BehaviorSubject(null as any);
 	private _isAuthorized$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-	public readonly user$: Observable<User> = this._user$.pipe(
-		takeWhile(user => user !== null),
-	) as Observable<User>;
+	// public readonly user$ = this._user$.pipe(
+	// 	filter(user => user !== null),
+	// 	tap(console.log)
+	// );
 	// public readonly isAuthorized$: Observable<boolean> = this._isAuthorized$.asObservable();
-	// public get user$(): Observable<User> {
-	// 	return this._user$.pipe(
-			// tap(item => {
-			// 	window.location.reload();
-			// }),
-	// 		takeWhile(user => user !== null),
-			
-	// 	) as Observable<User>;
+	public user$: Observable<User | null> = this._user$.pipe(
+			switchMap((user) => {
+				const localStorageAutUser = localStorage.getItem('auth-user');
+
+				if (localStorageAutUser !== null) {
+					return of(JSON.parse(localStorageAutUser) as User)
+				} else {
+					return of(null);
+				}
+			}),
+		);
+
+	public isAuthorized$: Observable<boolean> = this._isAuthorized$.pipe(
+			switchMap((user) => {
+				const localStorageAutUser = localStorage.getItem('auth-user');
+
+				if (localStorageAutUser !== null) {
+					return of(true)
+				} else {
+					return of(false);
+				}
+			})
+		);
+
+	// public get user$(): Observable<User | null> {
+	// 	return this._user$.asObservable();
 	// }
-	public readonly isAuthorized$: Observable<boolean> = this._isAuthorized$.asObservable();
+
+	// public readonly isAuthorized$: Observable<boolean> = this._isAuthorized$.asObservable();
 
 	constructor(
 		private userService: UserService,

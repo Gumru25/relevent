@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, take } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/user/user.model';
 
@@ -10,7 +10,7 @@ import { User } from 'src/app/user/user.model';
 })
 export class PageProfileComponent implements OnInit {
 
-	public user$: Observable<User> = this.authService.user$;
+	public user$: Observable<User | null> = this.authService.user$.pipe(take(1));
 
 	constructor(
 		private authService: AuthService
@@ -21,6 +21,11 @@ export class PageProfileComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+
+		// this.user$.subscribe(user => {
+		// 	console.log(user);
+			
+		// })
 
 		// this.cdr.detectChanges();
 	}

@@ -31,10 +31,10 @@ export class PageSignInComponent {
 
 		this.authService.authorize(formValues);
 
-		this.authService.isAuthorized$.subscribe(isAuth => {
-			if (isAuth === false) {
-				window.location.reload();
-			}
-		});
+		// this.authService.isAuthorized$.subscribe(isAuth => {
+		// 	if (isAuth === false) {
+		// 		window.location.reload();
+		// 	}
+		// });
 	}
 }

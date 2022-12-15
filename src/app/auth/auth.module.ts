@@ -29,10 +29,6 @@ import { UserService } from '../user/user.service';
 		MatFormFieldModule,
 		MatInputModule,
 		MatButtonModule
-  ],
-	providers: [
-		AuthService,
-		UserService
-	]
+  ]
 })
 export class AuthModule { }

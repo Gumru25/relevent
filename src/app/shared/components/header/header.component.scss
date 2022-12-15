@@ -1,5 +1,6 @@
 .header {
-	padding: 10px 0;
+	padding: 5px 0;
+	background-color:#ccecfb;	
 }
 
 .header__wrapper {
@@ -12,6 +13,11 @@
 .header__nav {
 	display: flex;
 	gap: 10px;
+}
+
+.header__nav-link {
+	color: #00408c;
+	font-weight: bold;
 }
 
 .header__logo-img {

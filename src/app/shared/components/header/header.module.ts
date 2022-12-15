@@ -15,9 +15,6 @@ import { AuthService } from 'src/app/auth/auth.service';
     CommonModule,
 		HeaderRoutingModule
   ],
-	providers: [
-		AuthService
-	],
 	exports: [
 		HeaderComponent
 	]
