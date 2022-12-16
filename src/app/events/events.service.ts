@@ -25,29 +25,31 @@ export class EventsService {
 		if (localStorageEventConcerts !== null) { // если в локальном хранилище что-то есть
 			const localStorageEventConcertsParsed = JSON.parse(localStorageEventConcerts);
 			this._events = localStorageEventConcertsParsed;
+		} else {
+			this.create4EventConcerts();
 		}
+	}
 
-		// localStorage.removeItem('event-concerts');
+	private create4EventConcerts() {
+		this.create({ 
+			imgUrl: 'assets/img/valery.jpg',
+			title: 'Valery Meladze'
+		 });
 
-		// this.create({ 
-		// 	imgUrl: '/assets/img/valery.jpg',
-		// 	title: 'Valery Meladze'
-		//  });
+		 this.create({ 
+			imgUrl: 'assets/img/evgeny_grinko.jfif',
+			title: 'Evgeny Grinko'
+		 });
 
-		//  this.create({ 
-		// 	imgUrl: '/assets/img/evgeny_grinko.jfif',
-		// 	title: 'Evgeny Grinko'
-		//  });
+		 this.create({ 
+			imgUrl: 'assets/img/onegin.jfif',
+			title: 'Eugene Onegin'
+		 });
 
-		//  this.create({ 
-		// 	imgUrl: '/assets/img/onegin.jfif',
-		// 	title: 'Eugene Onegin'
-		//  });
-
-		//  this.create({ 
-		// 	imgUrl: '/assets/img/edis.jfif',
-		// 	title: 'Edis'
-		//  });
+		 this.create({ 
+			imgUrl: 'assets/img/edis.jfif',
+			title: 'Edis'
+		 });
 	}
 
 
