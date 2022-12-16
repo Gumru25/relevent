@@ -1,10 +1,12 @@
+import { EventConcert } from "../events/event.model";
 import { UserInfo } from "./user.interfaces";
 
-export class User {
+export class User implements UserInfo {
 	email: string;
 	fullName: string;
 	phone: string;
 	password: string;
+	addedEventConcerts: EventConcert[] = [];
 	id: string;
 
 	constructor(userInfo: UserInfo) {

@@ -24,6 +24,11 @@ const routes: Routes = [
 		loadChildren: () => 
 			import('./error/error.module').then(m => m.ErrorModule)
 	},
+	{
+		path: 'events',
+		loadChildren: () => 
+			import('./events/events.module').then(m => m.EventsModule)
+	},
 	{ path: '**', redirectTo: 'error', pathMatch: 'full' },
 ];
 

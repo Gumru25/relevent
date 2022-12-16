@@ -20,19 +20,20 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	margin-top: 220px;
 }
 
 .intro__title {
 	font-family: Arial;
 	font-size: 3em;
 	text-shadow: 3px 3px black;
+	margin: 245px 0px;
 }
 
 
 .info-card-wrapper {
 	display: grid;
-  grid-template-columns: repeat(auto-fit, 250px);
+	grid-template-columns: repeat(auto-fit, 385px);
+	gap: 25px 25px;
 	justify-content: center;
   padding: 15px 0px;
 }
@@ -74,18 +75,15 @@
 .clients__intro {
 	text-align: center;
 	color: #00408c;
-	font-size: 3.5em;
+	font-size: 2.5em;
 }
 
 .clients__logo {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 80px);
-	// grid-template-columns: 100px;
-	// grid-auto-rows: auto;
-	gap: 50px;
+	gap: 135px;
 	place-items: center;
 	justify-content: center;
-	// justify-content: space-between;
 }
 
 
@@ -95,7 +93,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 	height: 100%;
-	padding: 150px 20px;
+	padding: 160px 0px;
 }
 
 .contacts__info {

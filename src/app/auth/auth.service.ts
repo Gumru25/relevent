@@ -89,4 +89,9 @@ export class AuthService {
 
 		this.authorize(createdUser);
 	}
+
+	public updateUser(newUser: User) {
+		this._user$.next(newUser);
+		localStorage.setItem('auth-user', JSON.stringify(newUser));
+	}
 }

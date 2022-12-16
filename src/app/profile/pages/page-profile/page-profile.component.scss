@@ -8,3 +8,21 @@
 .section_profile {
 	padding: 20px 0;
 }
+
+.event-card-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 100px);
+	gap: 50px;
+	// place-items: center;
+}
+
+.event-card {
+	display: grid;
+	grid-auto-rows: auto;
+	place-items: start;
+	gap: 10px;
+}
+
+.btn_buy-event {
+	margin-top: 20px;
+}

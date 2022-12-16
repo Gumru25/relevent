@@ -14,10 +14,10 @@
 							<mat-label>Email</mat-label>
 							<input type="email" matInput [formControl]="form.controls.email">
 							<mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
-								Напишите валидный email адрес
+								Please provide a valid email address
 							</mat-error>
 							<mat-error *ngIf="form.controls.email.hasError('required')">
-								Email обязателен для заполнения
+								Required field
 							</mat-error>
 						</mat-form-field>
 	
@@ -25,10 +25,10 @@
 							<mat-label>Password</mat-label>
 							<input type="password" matInput [formControl]="form.controls.password">
 							<mat-error *ngIf="form.controls.password.hasError('required')">
-								Password обязателен для заполнения
+								Required field
 							</mat-error>
 							<mat-error *ngIf="form.controls.password.hasError('minlength')">
-								Password > 4 char
+								Minimum of 4 characters
 							</mat-error>
 						</mat-form-field>
 	

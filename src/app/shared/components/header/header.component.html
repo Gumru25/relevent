@@ -6,9 +6,10 @@
 				<img src="/assets/img/logo2.png" alt="" class="header__logo-img">
 			</a>
 			<nav class="header__nav">
+				<a routerLink="/events" class="header__nav-link">Events</a>
 				<ng-container *ngIf="{isAuthorized: isAuthorized$ | async} as context">
 					<ng-container *ngIf="context.isAuthorized === false">
-						<a routerLink="/auth/sign-in" class="header__nav-link">Log in</a>
+						<a routerLink="/auth/sign-in" class="header__nav-link">Sign in</a>
 						<a routerLink="/auth/register" class="header__nav-link">Register</a>
 					</ng-container>
 					<ng-container *ngIf="context.isAuthorized === true">

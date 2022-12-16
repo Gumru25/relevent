@@ -2,10 +2,15 @@
 	display: grid;
 	grid-auto-rows: 1fr;
 	grid-template-columns: minmax(auto, 300px);
-	justify-content: start;
+	justify-content: center;
 	gap: 20px;
 }
 
 .form-auth__btn-submit {
 	margin-top: 20px;
+}
+h1{
+	text-align: center;
+	color: #00408c;	
+	font-size: 1.5em;
 }

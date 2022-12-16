@@ -1,0 +1,18 @@
+.section_events {
+	padding: 40px 0;
+}
+
+.event-card-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 200px);
+	justify-content: center;
+	gap: 50px;
+	// place-items: center;
+}
+
+.event-card {
+	display: grid;
+	grid-auto-rows: auto;
+	place-items: start;
+	gap: 10px;
+}
