@@ -16,7 +16,7 @@
 					</div>
 
 					<div class="events">
-						<h2>Bought events:</h2>
+						<h2>Purchased tickets:</h2>
 
 						<div class="event-card-wrapper">
 							<ng-container *ngFor="let eventConcert of user.addedEventConcerts">
@@ -28,7 +28,7 @@
 						</div>
 	
 						<ng-container *ngIf="user.addedEventConcerts.length === 0">
-							<div>No purchased events</div>
+							<div>No purchased tickets</div>
 							<button class="btn btn_buy-event" routerLink="/events" mat-raised-button color="primary">Buy events</button>
 						</ng-container>
 					</div>
