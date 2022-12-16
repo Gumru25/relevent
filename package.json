@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "build:github": "ng build --configuration production --base-href https://gumru25.github.io/relevent/ --deploy-url https://gumru25.github.io/relevent/",
+    "build:github": "ng build --configuration production --base-href /relevent/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
