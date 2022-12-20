@@ -7,4 +7,5 @@ export interface EventConcertInfo {
 
 export interface EventConcertPage extends EventConcert {
 	buyed: boolean;
+	id: string;
 }

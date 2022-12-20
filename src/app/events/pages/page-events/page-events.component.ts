@@ -21,9 +21,6 @@ export class PageEventsComponent {
 		private authService: AuthService,
 		private userService: UserService
 	) {
-
-		console.log(this.eventsService);
-		
 	}
 
 	public addEventConcertToUser(eventConcert: EventConcertPage) {
