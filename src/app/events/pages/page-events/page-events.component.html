@@ -13,8 +13,8 @@
 							<ng-container *ngIf="eventConcerts.length !== 0">
 								<ng-container *ngFor="let eventConcert of eventConcerts">
 									<div class="event-card" [attr.data-card-id]="eventConcert.id">
-										<img class="event-card__img" [src]="eventConcert.imgUrl">
-										<div class="event-card__title"> {{ eventConcert.title }} </div>
+										<img class="event-card__img" [routerLink]="eventConcert.id" [src]="eventConcert.imgUrl">
+										<div class="event-card__title" [routerLink]="eventConcert.id"> {{ eventConcert.title }} </div>
 										<button
 											mat-raised-button
 											color="primary"

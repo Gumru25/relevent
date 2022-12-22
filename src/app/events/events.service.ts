@@ -44,21 +44,29 @@ export class EventsService {
 		this.create({
 			imgUrl: 'assets/img/valery.jpg',
 			title: 'Valery Meladze',
+			description: 'Описание концерта 1',
+			date: new Date()
 		});
 
 		this.create({
 			imgUrl: 'assets/img/evgeny_grinko.jfif',
 			title: 'Evgeny Grinko',
+			description: 'Описание концерта 2',
+			date: new Date()
 		});
 
 		this.create({
 			imgUrl: 'assets/img/onegin.jfif',
 			title: 'Eugene Onegin',
+			description: 'Описание концерта 3',
+			date: new Date()
 		});
 
 		this.create({
 			imgUrl: 'assets/img/edis.jfif',
 			title: 'Edis',
+			description: 'Описание концерта 4',
+			date: new Date()
 		});
 	}
 
@@ -69,6 +77,16 @@ export class EventsService {
 		localStorage.setItem('event-concerts', JSON.stringify(newEvents));
 	
 		return eventConcert;
+	}
+
+	public getEventConcertById(id: string): Observable<EventConcert | null> {
+		return this._eventsBehSubj.pipe(
+			map(events => {
+				const findedEvent = events.find(event => event.id === id);
+
+				return findedEvent !== undefined ? findedEvent : null;
+			})
+		);
 	}
 
 	public getEventConcertsByUser(

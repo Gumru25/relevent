@@ -1,0 +1,36 @@
+.main {
+	padding: 40px 0;
+}
+
+.event-card {
+	// max-width: 200px;
+	display: grid;
+	grid-template-areas: 
+		"event-card__img-wrapper event__title"
+		"event-card__img-wrapper event__description"
+		"event-card__img-wrapper event__date"
+	;
+	grid-template-columns: minmax(50px, 300px) auto;
+	grid-auto-rows: auto;
+	place-items: center center;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.event-card__img-wrapper {
+	grid-area: event-card__img-wrapper;
+	align-self: flex-start;
+}
+
+.event-card__title {
+	grid-area: event__title;
+	font-size: 1.5em;
+}
+
+.event-card__description {
+	grid-area: event__description;
+}
+
+.event-card__date {
+	grid-area: event__date;
+}

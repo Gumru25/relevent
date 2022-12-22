@@ -1,0 +1,25 @@
+<div class="page">
+	<app-header class="header"></app-header>
+
+	<main class="main">
+		
+		<section class="section section_event">
+			<div class="container">
+				
+				<ng-container *ngIf="eventConcert$ | async as eventConcert">
+					<div class="event-card">
+						<div class="event-card__title">{{ eventConcert.title }}</div>
+						<div class="event-card__description">{{ eventConcert.description }}</div>
+						<div class="event-card__img-wrapper">
+							<img [src]="eventConcert.imgUrl" [alt]="eventConcert.title" class="event-card__img">
+						</div>
+						<div class="event-card__date">{{ eventConcert.date | date }}</div>
+					</div>
+				</ng-container>
+	
+			</div>
+		</section>
+	
+	</main>
+	<app-footer></app-footer>
+</div>

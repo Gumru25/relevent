@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Observable, Subject, take } from 'rxjs';
+import { map, Observable, Subject, take } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { EventConcert } from 'src/app/events/event.model';
+import { EventsService } from 'src/app/events/events.service';
 import { User } from 'src/app/user/user.model';
 
 @Component({
@@ -13,12 +15,9 @@ export class PageProfileComponent implements OnInit {
 	public user$: Observable<User | null> = this.authService.user$.pipe(take(1));
 
 	constructor(
-		private authService: AuthService
+		private authService: AuthService,
+		private eventsService: EventsService
 	) {}
-
-	public signOut(): void {
-		this.authService.deAuthorize();
-	}
 
 	ngOnInit(): void {
 
@@ -29,4 +28,23 @@ export class PageProfileComponent implements OnInit {
 
 		// this.cdr.detectChanges();
 	}
+
+	public signOut(): void {
+		this.authService.deAuthorize();
+	}
+
+	public createEventConcertUrl$(id: string): Observable<string | null> {
+		return this.eventsService.getEventConcertById(id)
+		.pipe(
+			map(event => {			
+				if (event !== null) {
+					return `/events/${event.id}`;
+				}
+				return event;
+			})
+		)
+	}
+	// public getEventConcertById(id: string): Observable<EventConcert | null> {
+	// 	return this.eventsService.getEventConcertById(id);
+	// }
 }

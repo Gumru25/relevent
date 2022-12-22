@@ -5,12 +5,14 @@ import { EventsRoutingModule } from './events-routing.module';
 import { HeaderModule } from '../shared/components/header/header.module';
 import { FooterModule } from '../shared/components/footer/footer.module';
 import { MatButtonModule } from '@angular/material/button';
+import { PageEventComponent } from './pages/page-event/page-event.component';
 
 
 
 @NgModule({
   declarations: [
-    PageEventsComponent
+    PageEventsComponent,
+    PageEventComponent
   ],
   imports: [
     CommonModule,

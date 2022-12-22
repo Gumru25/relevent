@@ -16,3 +16,8 @@
 	place-items: start;
 	gap: 10px;
 }
+
+.event-card__title,
+.event-card__img {
+	cursor: pointer;
+}

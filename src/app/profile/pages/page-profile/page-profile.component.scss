@@ -23,6 +23,11 @@
 	gap: 10px;
 }
 
+.event-card__img,
+.event-card__title {
+	cursor: pointer;
+}
+
 .btn_buy-event {
 	margin-top: 20px;
 }
