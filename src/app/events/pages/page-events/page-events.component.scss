@@ -21,3 +21,19 @@
 .event-card__img {
 	cursor: pointer;
 }
+
+.event-card__quantity {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.form-filter {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 200px);
+	justify-content: center;
+	grid-auto-rows: auto;
+	gap: 20px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}

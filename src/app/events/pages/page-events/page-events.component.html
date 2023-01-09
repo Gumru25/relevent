@@ -2,23 +2,61 @@
 	<app-header class="header"></app-header>
 
 	<main class="main">
-		
+
 		<section class="section section_events">
 			<div class="container">
-				
+
 				<div class="events">
-					
+
+					<form class="form-filter" [formGroup]="form">
+						<mat-form-field>
+							<mat-label>Filter by title</mat-label>
+							<input matInput formControlName="title" (input)="filterTitle()">
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-label>Filter by description</mat-label>
+							<input matInput formControlName="description" (input)="filterDescription()">
+						</mat-form-field>
+
+						<mat-form-field appearance="fill">
+							<mat-label>Enter a date range</mat-label>
+							<mat-date-range-input [formGroup]="form.controls.rangeDate" [rangePicker]="picker">
+								<input matStartDate formControlName="start" placeholder="Start date">
+								<input matEndDate (dateChange)="filterDate()" formControlName="end" placeholder="End date">
+							</mat-date-range-input>
+							<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-date-range-picker #picker></mat-date-range-picker>
+
+							<mat-error *ngIf="form.controls.rangeDate.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+							<mat-error *ngIf="form.controls.rangeDate.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+						</mat-form-field>
+
+					</form>
+
 					<div class="event-card-wrapper">
-						<ng-container *ngIf="eventConcerts$ | async as eventConcerts">
+						<ng-container *ngIf="filteredEventConcerts$ | async as eventConcerts">
 							<ng-container *ngIf="eventConcerts.length !== 0">
 								<ng-container *ngFor="let eventConcert of eventConcerts">
 									<div class="event-card" [attr.data-card-id]="eventConcert.id">
 										<img class="event-card__img" [routerLink]="eventConcert.id" [src]="eventConcert.imgUrl">
 										<div class="event-card__title" [routerLink]="eventConcert.id"> {{ eventConcert.title }} </div>
+										<div class="event-card__date"> {{ eventConcert.date | date: 'medium' }} </div>
+										<div class="event-card__description"> {{ eventConcert.description }} </div>
+										<div class="event-card__quantity">
+											<button class="btn_minus" mat-raised-button color="primary" [disabled]="eventConcert.buyed"
+											 (click)="changeQuantityEvent('-', eventConcert)"
+											>-</button>
+											<span> {{ eventConcert.quantity }} </span>
+											<button class="btn_plus" mat-raised-button color="primary" [disabled]="eventConcert.buyed"
+											(click)="changeQuantityEvent('+', eventConcert)"
+											>+</button>
+										</div>
 										<button
-											mat-raised-button
-											color="primary"
-											[disabled]="eventConcert.buyed"
+											mat-raised-button color="primary"
+											[ngClass]="{
+												'btn_buyed': eventConcert.buyed
+											}"
 											(click)="addEventConcertToUser(eventConcert)"
 										>
 											{{ eventConcert.buyed ? 'Purchased' : 'Buy' }}
@@ -30,10 +68,10 @@
 					</div>
 
 				</div>
-	
+
 			</div>
 		</section>
-	
+
 	</main>
 	<app-footer></app-footer>
 </div>

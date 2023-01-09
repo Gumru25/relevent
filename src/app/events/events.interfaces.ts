@@ -1,3 +1,4 @@
+import { EventConcertByUser } from "../user/user.interfaces";
 import { EventConcert } from "./event.model";
 
 export interface EventConcertInfo {
@@ -7,7 +8,12 @@ export interface EventConcertInfo {
 	date: Date;
 }
 
-export interface EventConcertPage extends EventConcert {
+export interface EventConcertPage extends EventConcertByUser {
 	buyed: boolean;
 	id: string;
+}
+
+export interface RangeDate {
+	start: Date;
+	end: Date;
 }

@@ -1,0 +1,73 @@
+<div class="page">
+	<app-header class="header"></app-header>
+
+	<main class="main">
+
+		<div class="container">
+
+			<div class="table-users-wrapper">
+
+				<h2>All Register Users</h2>
+
+				<table mat-table [dataSource]="tableUsers.dataSource">
+
+					<ng-container matColumnDef="email" sticky>
+						<th mat-header-cell *matHeaderCellDef> Email </th>
+						<td mat-cell *matCellDef="let user"> {{user.email}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="fullName" sticky>
+						<th mat-header-cell *matHeaderCellDef> Full name </th>
+						<td mat-cell *matCellDef="let user"> {{user.fullName}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="admin" sticky>
+						<th mat-header-cell *matHeaderCellDef> Admin </th>
+						<td mat-cell *matCellDef="let user"> {{user.admin}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="id" sticky>
+						<th mat-header-cell *matHeaderCellDef> ID </th>
+						<td mat-cell *matCellDef="let user"> {{user.id}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="password" sticky>
+						<th mat-header-cell *matHeaderCellDef> Password </th>
+						<td mat-cell *matCellDef="let user"> {{user.password}} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="phone" sticky>
+						<th mat-header-cell *matHeaderCellDef> Phone </th>
+						<td mat-cell *matCellDef="let user"> {{user.phone}} </td>
+					</ng-container>
+
+					<tr mat-header-row *matHeaderRowDef="tableUsers.displayedColumns"></tr>
+					<tr mat-row *matRowDef="let row; columns: tableUsers.displayedColumns;"></tr>
+				</table>
+
+			</div>
+
+			<div class="events">
+				<h2>All events</h2>
+
+				<div class="events-wrapper">
+					<ng-container *ngIf="events$ | async as events">
+						<ng-container *ngFor="let eventConcert of events">
+							<div class="event-card" [attr.data-card-id]="eventConcert.id">
+								<img class="event-card__img" [routerLink]="eventConcert.id" [src]="eventConcert.imgUrl">
+								<div class="event-card__title" [routerLink]="eventConcert.id"> {{ eventConcert.title }} </div>
+								<div class="event-card__date"> {{ eventConcert.date | date: 'medium' }} </div>
+								<div class="event-card__description"> {{ eventConcert.description }} </div>
+							</div>
+						</ng-container>
+					</ng-container>
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
+
+	<app-footer></app-footer>
+</div>

@@ -2,11 +2,11 @@
 	<app-header class="header"></app-header>
 
 	<main class="main">
-		
+
 		<ng-container *ngIf="user$ | async as user">
 			<section class="section section_profile">
 				<div class="container">
-		
+
 					<div class="profile">
 						<button mat-raised-button color="warn" (click)="signOut()">Sign out</button>
 						<div class="profile__id">ID: {{ user.id }}</div>
@@ -15,11 +15,15 @@
 						<div class="profile__phone">Phone: {{ user.phone }}</div>
 					</div>
 
+					<ng-container *ngIf="isAdmin$ | async">
+						<a class="btn btn_admin" mat-raised-button color="primary" routerLink="/admin">Go admin panel</a>
+					</ng-container>
+
 					<div class="events">
 						<h2>Purchased tickets:</h2>
 
 						<div class="event-card-wrapper">
-							<ng-container *ngFor="let eventConcert of user.addedEventConcerts">
+							<ng-container *ngFor="let eventConcert of buyedEvents$ | async">
 								<div class="event-card event-card_added">
 									<ng-container *ngIf="createEventConcertUrl$(eventConcert.id) | async as url">
 										<img class="event-card__img" [routerLink]="url" [src]="eventConcert.imgUrl">
@@ -28,18 +32,20 @@
 								</div>
 							</ng-container>
 						</div>
-	
-						<ng-container *ngIf="user.addedEventConcerts.length === 0">
-							<div>No purchased tickets</div>
-							<button class="btn btn_buy-event" routerLink="/events" mat-raised-button color="primary">Buy events</button>
+
+						<ng-container *ngIf="buyedEvents$ | async as buyedEvents">
+							<ng-container *ngIf="buyedEvents.length === 0">
+								<div>No purchased tickets</div>
+								<button class="btn btn_buy-event" routerLink="/events" mat-raised-button color="primary">Buy events</button>
+							</ng-container>
 						</ng-container>
 					</div>
-					
-		
+
+
 				</div>
 			</section>
 		</ng-container>
-	
+
 	</main>
 	<app-footer></app-footer>
 </div>

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { ErrorModule } from './error/error.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     AuthModule,
     ErrorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+		MatDatepickerModule,
+		MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+		MatDatepickerModule,
+		MatNativeDateModule
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

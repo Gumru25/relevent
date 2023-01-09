@@ -3,26 +3,22 @@ import { UserService } from "../user/user.service";
 import { AuthFormValues, RegisterFormValues } from "./auth.interface";
 import { Injectable, ApplicationRef } from '@angular/core';
 import { Router } from "@angular/router";
-import { BehaviorSubject, filter, map, Observable, of, ReplaySubject, Subject, switchMap, takeWhile, tap } from "rxjs";
+import { BehaviorSubject, filter, last, map, Observable, of, ReplaySubject, Subject, switchMap, takeWhile, tap } from "rxjs";
+import { EventConcertByUser } from "../user/user.interfaces";
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
-	private _user$: BehaviorSubject<User | null> = new BehaviorSubject(null as any);
+	public _user$: BehaviorSubject<User | null> = new BehaviorSubject(null as any);
 	private _isAuthorized$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-	// public readonly user$ = this._user$.pipe(
-	// 	filter(user => user !== null),
-	// 	tap(console.log)
-	// );
-	// public readonly isAuthorized$: Observable<boolean> = this._isAuthorized$.asObservable();
 	public user$: Observable<User | null> = this._user$.pipe(
 			switchMap((user) => {
-				const localStorageAutUser = localStorage.getItem('auth-user');
+				const localStorageAuthUser = localStorage.getItem('auth-user');
 
-				if (localStorageAutUser !== null) {
-					return of(JSON.parse(localStorageAutUser) as User)
+				if (localStorageAuthUser !== null) {
+					return of(JSON.parse(localStorageAuthUser) as User)
 				} else {
 					return of(null);
 				}
@@ -30,16 +26,29 @@ export class AuthService {
 		);
 
 	public isAuthorized$: Observable<boolean> = this._isAuthorized$.pipe(
-			switchMap((user) => {
-				const localStorageAutUser = localStorage.getItem('auth-user');
+			switchMap((isAuth) => {
+				const localStorageAuthUser = localStorage.getItem('auth-user');
 
-				if (localStorageAutUser !== null) {
+				if (localStorageAuthUser !== null) {
 					return of(true)
 				} else {
 					return of(false);
 				}
 			})
 		);
+
+	public isAdmin$: Observable<boolean> = this._isAuthorized$.pipe(
+		switchMap((isAuth) => {
+			const localStorageAuthUser = localStorage.getItem('auth-user');
+
+			if (localStorageAuthUser !== null) {
+				const parsedAdminLocalStorageAuthUser: User = JSON.parse(localStorageAuthUser);
+				return of(parsedAdminLocalStorageAuthUser.admin);
+			} else {
+				return of(false);
+			}
+		})
+	);
 
 	// public get user$(): Observable<User | null> {
 	// 	return this._user$.asObservable();
@@ -59,10 +68,10 @@ export class AuthService {
 
 		if (localStorageAutUser !== null) { // если в локальном хранилище что-то есть
 			const localStorageUserParsed = JSON.parse(localStorageAutUser) as User;
-			
+
 			this._user$.next(localStorageUserParsed)
 			this._isAuthorized$.next(true);
-			
+
 		}
 	}
 
@@ -93,5 +102,16 @@ export class AuthService {
 	public updateUser(newUser: User) {
 		this._user$.next(newUser);
 		localStorage.setItem('auth-user', JSON.stringify(newUser));
+	}
+
+	public updateEventsByUser(events: EventConcertByUser[]) {
+		const lastUser = this._user$.value;
+
+		if (lastUser?.addedEventConcerts) {
+			const newUser = lastUser;
+			newUser.addedEventConcerts = events;
+			this._user$.next(newUser);
+			localStorage.setItem('auth-user', JSON.stringify(newUser));
+		}
 	}
 }

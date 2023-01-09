@@ -48,3 +48,17 @@ img {
 	min-height: 100vh;
 }
 
+.mdc-button {
+	min-width: auto !important;
+	height: auto !important;
+	padding: 0.8em 1.6em !important;
+}
+
+.btn_minus,
+.btn_plus {
+	padding: 0.5em 1em !important;
+}
+
+.btn_buyed {
+	--mdc-protected-button-container-color: #929292 !important;
+}

@@ -1,0 +1,18 @@
+.events-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 120px);
+	gap: 15px;
+	// place-items: center;
+}
+
+.event-card {
+	display: grid;
+	grid-auto-rows: auto;
+	place-items: start;
+	gap: 10px;
+}
+
+.event-card__title,
+.event-card__img {
+	cursor: pointer;
+}

@@ -10,7 +10,9 @@ import {
 	switchMap,
 	map,
 	BehaviorSubject,
+	tap,
 } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -22,13 +24,15 @@ export class EventsService {
 		return this._eventsBehSubj.asObservable();
 	}
 
-	constructor() {
+	constructor(
+
+	) {
 		this.onInit();
 	}
 
 	private onInit() {
 		const localStorageEventConcerts = localStorage.getItem('event-concerts');
-	
+
 		if (localStorageEventConcerts !== null) {
 			// Если в локальном хранилище что-то есть
 			const localStorageEventConcertsParsed = JSON.parse(
@@ -38,36 +42,39 @@ export class EventsService {
 		} else {
 			this.create4EventConcerts();
 		}
+
 	}
 
 	private create4EventConcerts() {
 		this.create({
 			imgUrl: 'assets/img/valery.jpg',
 			title: 'Valery Meladze',
-			description: 'Описание концерта 1',
-			date: new Date()
+			description: ' концерта 1',
+			date: new Date('2022-01-01')
 		});
 
 		this.create({
 			imgUrl: 'assets/img/evgeny_grinko.jfif',
 			title: 'Evgeny Grinko',
-			description: 'Описание концерта 2',
-			date: new Date()
+			description: 'Renowned pianist Evgeny Grinko will perform a concert program in front of his fans at the Heydar Aliyev Palace on January 26.',
+			date: new Date('2022-01-05')
 		});
 
 		this.create({
 			imgUrl: 'assets/img/onegin.jfif',
 			title: 'Eugene Onegin',
-			description: 'Описание концерта 3',
-			date: new Date()
+			description: 'On February 19, the performance "Eugene Onegin" will take place in the Concert Hall of the Opera Studio at the Baku Musical Academy.',
+			date: new Date('2022-01-07')
 		});
 
 		this.create({
 			imgUrl: 'assets/img/edis.jfif',
 			title: 'Edis',
 			description: 'Описание концерта 4',
-			date: new Date()
+			date: new Date('2022-02-09')
 		});
+
+		
 	}
 
 	public create(eventInfo: EventConcertInfo): EventConcert {
@@ -75,7 +82,6 @@ export class EventsService {
 		const newEvents = this._eventsBehSubj.getValue().concat(eventConcert);
 		this._eventsBehSubj.next(newEvents);
 		localStorage.setItem('event-concerts', JSON.stringify(newEvents));
-	
 		return eventConcert;
 	}
 
@@ -99,30 +105,33 @@ export class EventsService {
 				} else {
 					return this._eventsBehSubj
 					.pipe(
-						map((_events) => 
-							_events.map(_event => ({..._event, buyed: false}))
+						map((_events) =>
+							_events.map(_event => ({..._event, buyed: false, quantity: 1}))
 						)
 				);
 				}
-			})
+			}),
+			// tap((events) => {
+			// 	console.log(events);
+
+			// })
 		);
 	}
 
-	private mapEventConcertsByUser(user: User) {
+	private mapEventConcertsByUser(user: User): Observable<EventConcertPage[]> {
 		return this._eventsBehSubj.pipe(
 			map((_events) => {
 				return _events.map((_event) => {
 					const eventByUser = user.addedEventConcerts.find(
 						(addedEvent) => addedEvent.id === _event.id
 					);
-	
+
 					if (eventByUser !== undefined) {
 						// Если такой event нашёлся в добавленных у юзера
 						const copyObjEventByUser = Object.assign({}, eventByUser);
-						(copyObjEventByUser as EventConcertPage).buyed = true;
 						return copyObjEventByUser as EventConcertPage;
 					} else {
-						(_event as EventConcertPage).buyed = false;
+						(_event as EventConcertPage).quantity = 1;
 						return _event as EventConcertPage;
 					}
 				});
